@@ -36,6 +36,7 @@ function handleCardFlip(cardElement) {
     }
 
     secondCard = cardElement;
+    lockBoard = true
     checkForMatch();
 }
 
@@ -51,7 +52,7 @@ function disableCards() {
 }
 
 function unflipCards() {
-    lockBoard = true;
+    
     setTimeout(() => {
         firstCard.classList.remove('flipped');
         secondCard.classList.remove('flipped');
