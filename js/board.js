@@ -9,7 +9,10 @@ let secondCard = null;
 let lockBoard = false;
 
 function shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
+    for (let i = array.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]
+    }
 }
 
 export function createBoard(cardCount) {
@@ -18,7 +21,7 @@ export function createBoard(cardCount) {
     shuffle(cards);
     cards.forEach(card => {
         const cardElement = createCardElement(card);
-        cardElement.addEventListener('click', () => flipCard(cardElement, handleCardFlip));
+        cardElement.addEventListener('click', () => flipCard(cardElement, handleCardFlip, lockBoard));
         gameBoard.appendChild(cardElement);
     });
 }
@@ -63,5 +66,6 @@ function unflipCards() {
 }
 
 function resetBoard() {
-    [firstCard, secondCard, lockBoard] = [null, null, false];
+    [firstCard, secondCard, lockBoard] = [null, null];
+    lockBoard = false;
 }
