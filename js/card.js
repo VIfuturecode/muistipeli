@@ -6,6 +6,7 @@ export function createCardElement(card) {
 }
 
 export function flipCard(cardElement, callback) {
+    if (lockBoard) return;
     if (cardElement.classList.contains('flipped')) return;
     cardElement.classList.add('flipped');
     cardElement.textContent = cardElement.dataset.card;
