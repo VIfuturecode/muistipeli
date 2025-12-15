@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function askCardCount() {
     cardCount = parseInt(prompt("Syötä korttien määrä (parillinen luku):"), 10);
-    if (inNaN(cardCount) || cardCount % 2 !== 0) {
+    if (isNaN(cardCount) || cardCount % 2 !== 0) {
         alert("Korttien määrän täytyy olla parillinen luku.");
         return askCardCount();
     }
@@ -19,6 +19,6 @@ function askCardCount() {
 
 function resetGame() {
     const gameBoard = document.getElementById('game-board');
-    gameBoard.innetHTML = '';
+    gameBoard.innerHTML = '';
     askCardCount();
 }
