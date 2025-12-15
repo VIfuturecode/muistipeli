@@ -1,10 +1,24 @@
 import { createBoard } from './board.js';
 
+let cardCount = 0;
+
 document.addEventListener('DOMContentLoaded', () => {
-    const cardCount = parseInt(prompt("Syötä korttien määrä (parillinen luku):"), 10);
-    if (cardCount % 2 !== 0) {
+    askCardCount();
+    const resetButton = document.getElementById('reset-button');
+    resetButton.addEventListener('click', resetGame);
+});
+
+function askCardCount() {
+    cardCount = parseInt(prompt("Syötä korttien määrä (parillinen luku):"), 10);
+    if (inNaN(cardCount) || cardCount % 2 !== 0) {
         alert("Korttien määrän täytyy olla parillinen luku.");
-        return;
+        return askCardCount();
     }
     createBoard(cardCount);
-});
+}
+
+function resetGame() {
+    const gameBoard = document.getElementById('game-board');
+    gameBoard.innetHTML = '';
+    askCardCount();
+}
